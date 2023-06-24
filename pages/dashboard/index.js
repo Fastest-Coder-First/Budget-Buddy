@@ -17,6 +17,7 @@ const ctx = document.getElementById("myChart");
   
 
 add.addEventListener("click", (e) => {
+  if(expenseTitle.value===""||expenseAmount.value==="")return
   e.preventDefault();
   console.log("clicked");
   const expense = {
