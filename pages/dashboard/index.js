@@ -125,8 +125,10 @@ const getYearlySaving = () => {
   const totalExpense = expenses
     .filter((ele) => ele.type === "Expense")
     .reduce((acc, curr) => acc + parseInt(curr.amount), 0);
-
-  const total = totalCredit - totalExpense;
+const totalInvestment = expenses
+    .filter((ele) => ele.type === "Investment")
+    .reduce((acc, curr) => acc + parseInt(curr.amount), 0);
+  const total = totalCredit - totalExpense + totalInvestment;
   yearlySaving.innerHTML = total ? total * 12 : 0;
 };
 const getsavingTillNow = () => {
@@ -136,8 +138,10 @@ const getsavingTillNow = () => {
   const totalExpense = expenses
     .filter((ele) => ele.type === "Expense")
     .reduce((acc, curr) => acc + parseInt(curr.amount), 0);
-    
-  const total = totalCredit - totalExpense;
+   const totalInvestment = expenses
+    .filter((ele) => ele.type === "Investment")
+    .reduce((acc, curr) => acc + parseInt(curr.amount), 0); 
+  const total = totalCredit - totalExpense + totalInvestment;
     savingTillNow.innerHTML = total ? total : 0;
 }
 // Render Expenses
