@@ -32,9 +32,9 @@ User Interface Design: Designing an intuitive and user-friendly interface that e
 Performance Optimization: Managing large datasets and ensuring smooth performance while handling extensive expense records and budget calculations was a challenge. Optimizing database queries, implementing caching strategies, and employing efficient algorithms for data retrieval and calculations were necessary to provide a seamless user experience.
 ## **Code Repository:**
 
-The code for my co-create Hub project can be found in the following public code repository: [**GitHub Repository**](https://github.com/Fastest-Coder-First/Budget-Buddy)
+The code for my Budget Buddy project can be found in the following public code repository: [**GitHub Repository**](https://github.com/Fastest-Coder-First/Budget-Buddy)
 
 ## **Demo Link:**
 
-You can visit [Co-Create](https://congenial-adventure-r411214.pages.github.io/) Hub here
+You can visit [Budget Buddy](https://congenial-adventure-r411214.pages.github.io/) here
 
