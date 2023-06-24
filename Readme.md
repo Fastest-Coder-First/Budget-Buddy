@@ -2,7 +2,7 @@
 
 ## **Team Members:**
 
-* [Harsh Wardhan](https://harshwardhan847.netlify.app) - @[Harsh Wardhan](@HarshWardhan847)
+* [Harsh Wardhan](https://harshwardhan847.netlify.app) - @[Harsh Wardhan]
     
 
 ## **Description:**
