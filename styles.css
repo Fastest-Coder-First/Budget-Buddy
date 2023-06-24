@@ -6,6 +6,11 @@
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 :root{
     --primary-color: #2f4550;
     --secondary-color: #385360;
@@ -136,4 +141,10 @@ nav>ul{
 .header-button-container{
     display: flex;
     gap: 2rem;
+}
+@media screen and (max-width: 1024px){
+   body{
+         font-size: 10px;
+   }
+    
 }

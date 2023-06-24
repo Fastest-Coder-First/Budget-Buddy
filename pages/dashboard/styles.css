@@ -90,7 +90,7 @@ option{
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     width: 50%;
-    min-width: 500px;
+    min-width: 300px;
     margin: 0 auto;
 }
 .addExpense>h1{
@@ -299,4 +299,47 @@ option{
 .dollar{
     font-size: 3rem !important;
     color: rgb(39, 255, 39);
+}
+.top-section{
+    display: flex;
+    flex-direction: row;
+}
+@media screen and (max-width: 768px){
+   .top-section{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   };
+    
+}
+@media screen and (max-width: 768px){
+   .value-box-wrapper{
+    width: 100%;
+   };
+   .addExpense{
+    width: 100%;
+   };
+}
+@media screen and (max-width: 768px){
+   .addExpense{
+    width: 100%;
+   };
+}
+@media screen and (max-width: 768px){
+    .history-section{
+        flex-direction: column;
+    }
+}
+@media screen and (max-width: 768px){
+    .history-wrapper{
+        width: 100%;
+    }
+}
+@media screen and (max-width: 768px){
+    .graph{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
