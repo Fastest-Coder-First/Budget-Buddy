@@ -8,19 +8,14 @@ const expenseTitle = document.getElementById("expense-name");
 const expenseAmount = document.getElementById("expense-amount");
 const expenseType = document.getElementById("expense-type");
 const userName = document.getElementById("name");
+const savingTillNow = document.getElementById("saving-till-now");
+
 let expenses = [];
 let editExpense = null;
-userName.addEventListener("click", (e) => {
-  e.preventDefault();
-  userName.contentEditable = true;
-  userName.focus();
-});
-userName.addEventListener("blur", (e) => {
-  if (userName.innerHTML === "") {
-    localStorage.setItem("userName", "Name");
-  }
-  localStorage.setItem("userName", userName.innerHTML);
-});
+const ctx = document.getElementById("myChart");
+
+  
+
 add.addEventListener("click", (e) => {
   e.preventDefault();
   console.log("clicked");
@@ -49,6 +44,7 @@ add.addEventListener("click", (e) => {
   expenseAmount.value = "";
   saveExpenses();
   renderExpenses();
+  updateChart()
   editExpense = null;
 });
 
@@ -87,6 +83,7 @@ const saveExpenses = () => {
 // Delete Expense
 const deleteExpense = (title) => {
   expenses = expenses.filter((expense) => expense.id !== title);
+  updateChart()
 };
 
 // Edit Expense
@@ -100,25 +97,49 @@ const editExpenseFunc = (title) => {
 
 // Get Total Expense
 const getTotalExpense = () => {
-  const total = expenses.filter((ele)=>ele.type==="Expense").reduce((acc, curr) => acc + parseInt(curr.amount), 0);
+  const total = expenses
+    .filter((ele) => ele.type === "Expense")
+    .reduce((acc, curr) => acc + parseInt(curr.amount), 0);
   totalExpense.innerHTML = total ? total : 0;
 };
-// Get Total Saving
+
+// Get Total Credit
 const getTotalSaving = () => {
-  const total = expenses.filter((ele)=>ele.type==="Saving").reduce((acc, curr) => acc + parseInt(curr.amount), 0);
+  const total = expenses
+    .filter((ele) => ele.type === "Credit")
+    .reduce((acc, curr) => acc + parseInt(curr.amount), 0);
   totalSaving.innerHTML = total ? total : 0;
 };
 // Get Total Investment
 const getTotalInvestment = () => {
-  const total = expenses.filter((ele)=>ele.type==="Investment").reduce((acc, curr) => acc + parseInt(curr.amount), 0);
+  const total = expenses
+    .filter((ele) => ele.type === "Investment")
+    .reduce((acc, curr) => acc + parseInt(curr.amount), 0);
   totalInvestment.innerHTML = total ? total : 0;
 };
-// Get Total Saving
+// Get Total Credit
 const getYearlySaving = () => {
-  const total = expenses.filter((ele)=>ele.type==="Saving").reduce((acc, curr) => acc + parseInt(curr.amount), 0);
-  yearlySaving.innerHTML = total ? total*12 : 0;
-};
+  const totalCredit = expenses
+    .filter((ele) => ele.type === "Credit")
+    .reduce((acc, curr) => acc + parseInt(curr.amount), 0);
+  const totalExpense = expenses
+    .filter((ele) => ele.type === "Expense")
+    .reduce((acc, curr) => acc + parseInt(curr.amount), 0);
 
+  const total = totalCredit - totalExpense;
+  yearlySaving.innerHTML = total ? total * 12 : 0;
+};
+const getsavingTillNow = () => {
+    const totalCredit = expenses
+    .filter((ele) => ele.type === "Credit")
+    .reduce((acc, curr) => acc + parseInt(curr.amount), 0);
+  const totalExpense = expenses
+    .filter((ele) => ele.type === "Expense")
+    .reduce((acc, curr) => acc + parseInt(curr.amount), 0);
+    
+  const total = totalCredit - totalExpense;
+    savingTillNow.innerHTML = total ? total : 0;
+}
 // Render Expenses
 const renderExpenses = () => {
   expenseList.innerHTML = "";
@@ -126,12 +147,13 @@ const renderExpenses = () => {
   getTotalInvestment();
   getTotalSaving();
   getYearlySaving();
+  getsavingTillNow()
 
   expenses.forEach((expense) => {
     const div = document.createElement("div");
     if (expense.type === "Investment") {
       div.classList.add("investment");
-    } else if (expense.type === "Saving") {
+    } else if (expense.type === "Credit") {
       div.classList.add("saving");
     } else {
       div.classList.add("expense");
@@ -143,13 +165,13 @@ const renderExpenses = () => {
           <h4>$${expense.amount}</h4>
         </div>
         <div class="expense-item">
-          <h4>${expense.date}</h4>
-          <h4>${expense.type}</h4>
-          <div>
-            <button class="edit-btn" data-title="${expense.id}">Edit</button>
-            <button class="delete-btn" data-title="${expense.id}">Delete</button>
+        <h4>${expense.type}</h4>
+        <h4>${expense.date}</h4>
           </div>
-        </div>
+          <div class="history-btn-container">
+            <button class="edit-btn" data-title="${expense.id}">Edit<img class='edit-png' src="../../assets/edit.png"/></button>
+            <button class="delete-btn" data-title="${expense.id}">Delete<img class='delete-png' src="../../assets/delete.png"/></button>
+          </div>
       `;
     expenseList.appendChild(div);
   });
@@ -162,10 +184,46 @@ const renderAlert = (message, type) => {
 
 // Initialize
 const init = () => {
-  userName.innerHTML = localStorage.getItem("userName")
-    ? localStorage.getItem("userName")
-    : "Name";
   getExpenses();
   renderExpenses();
 };
 init();
+const chart = CreateChart();
+function CreateChart() {
+    const chart = new Chart(ctx, {
+        type: "doughnut",
+        data: {
+          labels: ["Expences", "Saving", "Investment"],
+          datasets: [
+            {
+              label: "# of Votes",
+              data: [
+                totalExpense.innerHTML,
+                totalSaving.innerHTML,
+                totalInvestment.innerHTML,
+              ],
+              backgroundColor: ["rgb(255, 106, 106)", "rgb(106, 255, 106)", "rgb(106, 106, 255)"],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+            responsive: true,
+            title:{
+                display: true,
+                text: "Color test"
+            }
+        },
+        
+      });
+      return chart;
+      
+}
+function updateChart() {
+  chart.data.datasets[0].data = [
+    totalExpense.innerHTML,
+    totalSaving.innerHTML,
+    totalInvestment.innerHTML,
+  ];
+    chart.update();
+}

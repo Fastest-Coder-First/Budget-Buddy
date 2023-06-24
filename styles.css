@@ -4,6 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 :root{
     --primary-color: #2f4550;
@@ -135,54 +136,4 @@ nav>ul{
 .header-button-container{
     display: flex;
     gap: 2rem;
-}
-.expense-list{
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-.history-item{
-    padding: 1rem;
-    border-radius: 0.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: all 0.3s ease;
-}
-.history-item:hover{
-    transform: scale(1.05);
-}
-.expense-item{
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--primary-color);
-}
-.expense{
-    background-color: rgb(255, 106, 106);
-    padding: 1rem;
-    border-radius: 0.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: all 0.3s ease;
-}
-.saving{
-    background-color: rgb(106, 255, 106);
-    padding: 1rem;
-    border-radius: 0.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: all 0.3s ease;
-}
-.investment{
-    background-color: rgb(106, 106, 255);
-    padding: 1rem;
-    border-radius: 0.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: all 0.3s ease;
 }
