@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="../../styles.css" />
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <header class="container flex flex-column">
+      <div class="">
+        <nav class="flex flex-row">
+          <ul>
+            <li id="branding">
+              <h1 class="branding">Budget Buddy</h1>
+            </li>
+            <li>
+              <a class="nav-link" rel="noreforever" href="../../index.html"
+                >Home</a
+              >
+              <a class="nav-link" href="../../pages/dashboard/dashboard.html"
+                >Budget</a
+              >
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div>
+        <h1 class="center">Welcome to Budget Buddy.<span>👋</span></h1>
+        <div class="flex flex-row">
+          <div class="card">
+            <div>
+              <img
+                src="https://gist.githubusercontent.com/wansoul/dd1f4c9651ad56ebb8c920039485e7a5/raw/228df59d2024b1ee2aa13f7d4a25cedc86064c32/ws_icon.svg"
+                alt="WS icon"
+              />
+              <h1 id="name">Name</h1>
+            </div>
+            <div>
+              <h2>Target $</h2>
+              <h2><input type="number" placeholder="Saving Target" /></h2>
+              <img
+                src="https://gist.githubusercontent.com/wansoul/5b6325e21ab97c84b1856c474e158e74/raw/e8c851b631accb50fd81b67b92ee86a0c6211f39/contactless-icon.svg"
+                alt="Contactless icon"
+              />
+            </div>
+          </div>
+          <div class="value-box-wrapper">
+              <div class="value-box">Total Expenses<span id="total-expense"></span></div>
+              <div class="value-box">Total Saving<span id="total-saving"></span></div>
+              <div class="value-box">Total Investment<span id="total-investment"></span></div>
+              <div class="value-box">Expected Yearly Saving<span id="yearly-saving"></span></div>
+          </div>
+        </div>
+      </div>
+      <section class="flex">
+        <div class="graph">graph</div>
+        <form class="addExpense">
+          <div class="flex flex-column w-full" >
+            <label for="name">Name</label>
+            <input type="text" placeholder="salary,house rent,sip" id="expense-name" />
+          </div>
+          <div class="flex flex-column w-full">
+            <label for="name">Amount $</label>
+            <input type="text" placeholder="5000"  id="expense-amount" />
+          </div>
+          <select class="flex w-full" id="expense-type">
+            <option value="Investment">Investment</option>
+            <option value="Expense">Expense</option>
+            <option value="Saving">Saving</option>
+          </select>
+          <button type="button" id="add-expense" class="primary-button w-full">
+            Add
+          </button>
+        </form>
+      </section>
+      <div id="expense-list" class="expense-list">
+        <!-- render expense list -->
+      </div>
+    </header>
+  </body>
+  <script src="../dashboard/index.js"></script>
+</html>
